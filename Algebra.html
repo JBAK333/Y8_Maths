@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mr Baker's Maths Class - Year 8 Algebra Practice</title>
+  <style>
+    :root {
+      --bg1: #fff7ed;
+      --bg2: #eefcff;
+      --card: #ffffff;
+      --text: #1f2937;
+      --blue: #2563eb;
+      --purple: #7c3aed;
+      --pink: #ec4899;
+      --orange: #f97316;
+      --green: #10b981;
+      --border: #dbeafe;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      color: var(--text);
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+      border-radius: 28px;
+      padding: 24px;
+      color: white;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 2.25rem;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      font-size: 1.06rem;
+      line-height: 1.65;
+      max-width: 680px;
+      margin-bottom: 14px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .pill {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.28);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+    }
+
+    .sparkle {
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.22);
+    }
+
+    .sparkle.one { width: 110px; height: 110px; top: -25px; right: 15px; }
+    .sparkle.two { width: 60px; height: 60px; bottom: 24px; right: 210px; }
+    .sparkle.three { width: 42px; height: 42px; top: 55px; left: 58%; }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 24px 0 18px;
+    }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.09);
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      opacity: 0.96;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: white;
+    }
+
+    .secondary {
+      background: linear-gradient(135deg, var(--orange), #fb7185);
+      color: white;
+    }
+
+    .tertiary {
+      background: linear-gradient(135deg, var(--green), #14b8a6);
+      color: white;
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.82);
+      border: 2px solid #ffffff;
+      border-radius: 22px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+
+    .panel p {
+      margin: 8px 0;
+      line-height: 1.65;
+    }
+
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .legend-box {
+      background: rgba(255,255,255,0.82);
+      border: 2px solid rgba(255,255,255,0.95);
+      border-radius: 18px;
+      padding: 12px 14px;
+      color: #1f2937;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .section {
+      margin-top: 26px;
+    }
+
+    .section-title {
+      background: linear-gradient(135deg, #dbeafe, #ede9fe);
+      border: 2px solid white;
+      border-radius: 22px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+
+    .section-title h2 {
+      margin: 0 0 6px;
+      font-size: 1.35rem;
+      color: #1e3a8a;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    .question-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      border: 3px solid #f3f4f6;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, #60a5fa, #a78bfa, #34d399, #f59e0b, #f472b6);
+    }
+
+    .q-number {
+      display: inline-block;
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      color: #78350f;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      margin: 6px 0 10px;
+    }
+
+    .q-type {
+      font-size: 0.92rem;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .q-text {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      min-height: 92px;
+      margin-bottom: 14px;
+      white-space: pre-line;
+    }
+
+    .answer-details {
+      margin-top: 12px;
+    }
+
+    .answer-details summary {
+      list-style: none;
+      display: inline-block;
+      border: none;
+      border-radius: 16px;
+      padding: 12px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.09);
+      background: linear-gradient(135deg, #f472b6, #fb7185);
+      color: white;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    .answer-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border: 2px dashed #34d399;
+      border-radius: 16px;
+      padding: 12px;
+      line-height: 1.65;
+      white-space: pre-line;
+    }
+
+    .answer-details summary::after {
+      content: "Show Answer";
+    }
+
+    .answer-details[open] summary::after {
+      content: "Hide Answer";
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 24px;
+      color: #4b5563;
+      font-size: 0.98rem;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .question-grid, .legend {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 1.9rem; }
+      .q-text { min-height: auto; }
+    }
+
+    @media (max-width: 600px) {
+      .page { padding: 14px; }
+      .hero { padding: 18px; border-radius: 20px; }
+      h1 { font-size: 1.65rem; line-height: 1.2; }
+      .subtitle { font-size: 0.95rem; line-height: 1.5; }
+      .controls { flex-direction: column; }
+      button, .answer-details summary { width: 100%; text-align: center; padding: 14px 16px; }
+      .card { padding: 15px; border-radius: 18px; }
+      .q-text { font-size: 1rem; line-height: 1.55; }
+      .section-title { padding: 14px; }
+      .panel, .legend-box { padding: 12px; }
+      .pill { font-size: 0.85rem; padding: 7px 12px; }
+      svg { max-height: 260px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="sparkle one"></div>
+      <div class="sparkle two"></div>
+      <div class="sparkle three"></div>
+      <div class="hero-grid">
+        <div>
+          <h1>Mr Baker's Maths Class</h1>
+          <div class="subtitle">
+            Year 8 Algebra practice. Generate a fresh test-style practice set while keeping the sections in the correct order: algebra language, substitution, simplifying, expanding, factorising and reasoning.
+          </div>
+          <div class="pill-row">
+            <div class="pill">Year 8 Algebra</div>
+            <div class="pill">Fresh practice sets</div>
+            <div class="pill">Show or hide answers</div>
+          </div>
+        </div>
+        <div aria-label="Cartoon algebra illustration">
+          <svg viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg" role="img">
+            <rect x="0" y="0" width="500" height="320" rx="26" fill="#ffffff" opacity="0.18"/>
+            <rect x="40" y="40" width="420" height="190" rx="18" fill="#1e3a8a" stroke="#bfdbfe" stroke-width="6"/>
+            <text x="250" y="82" text-anchor="middle" font-size="28" fill="#dbeafe" font-family="Trebuchet MS, Arial">Year 8 Algebra</text>
+            <text x="110" y="130" font-size="27" fill="#fde68a" font-family="Trebuchet MS, Arial">3(x + 4) = 3x + 12</text>
+            <text x="110" y="170" font-size="25" fill="#bbf7d0" font-family="Trebuchet MS, Arial">x = 3,  2x + 5 = 11</text>
+            <text x="95" y="207" font-size="23" fill="#fbcfe8" font-family="Trebuchet MS, Arial">6a + 12 = 6(a + 2)</text>
+            <circle cx="100" cy="265" r="28" fill="#fde68a"/>
+            <rect x="72" y="294" width="56" height="18" rx="9" fill="#60a5fa"/>
+            <circle cx="400" cy="265" r="28" fill="#fecaca"/>
+            <rect x="372" y="294" width="56" height="18" rx="9" fill="#a78bfa"/>
+            <circle cx="250" cy="255" r="34" fill="#fdba74"/>
+            <rect x="218" y="288" width="64" height="22" rx="10" fill="#f472b6"/>
+            <path d="M220 245 Q250 220 280 245" stroke="#1f2937" stroke-width="6" fill="none"/>
+            <circle cx="238" cy="252" r="4" fill="#1f2937"/>
+            <circle cx="262" cy="252" r="4" fill="#1f2937"/>
+            <path d="M238 268 Q250 278 262 268" stroke="#1f2937" stroke-width="4" fill="none"/>
+            <rect x="226" y="216" width="48" height="10" rx="5" fill="#1f2937"/>
+            <text x="250" y="28" text-anchor="middle" font-size="18" fill="#ffffff" font-family="Trebuchet MS, Arial">Build confidence through repeated practice</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <div class="controls">
+      <button type="button" id="generateBtn" class="primary" onclick="generateNewPracticeSet()">Generate New Practice Set</button>
+      <button type="button" id="showAllBtn" class="secondary" onclick="showAllAnswers()">Show All Answers</button>
+      <button type="button" id="hideAllBtn" class="tertiary" onclick="hideAllAnswers()">Hide All Answers</button>
+    </div>
+
+    <div class="panel">
+      <p>This page follows the same order as the test sections. The questions refresh with new numbers, but the section order is not randomised.</p>
+      <p>Use the button above to create a new practice set, then reveal answers when ready.</p>
+    </div>
+
+    <div class="legend">
+      <div class="legend-box">Remember: identify terms, coefficients and constants carefully.</div>
+      <div class="legend-box">Remember: substitute values first, then simplify using order of operations.</div>
+      <div class="legend-box">Remember: only combine like terms with the same pronumerals and powers.</div>
+    </div>
+
+    <div id="content"></div>
+
+    <p class="footer-note">Practise each section until the methods feel automatic.</p>
+  </div>
+
+  <script>
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function randomChoice(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function positiveNonZero(min, max) {
+      let n = randomInt(min, max);
+      while (n === 0) n = randomInt(min, max);
+      return n;
+    }
+
+    function signedNumber(n) {
+      return n < 0 ? `−${Math.abs(n)}` : `${n}`;
+    }
+
+    function signedMiddle(n) {
+      return n < 0 ? ` − ${Math.abs(n)}` : ` + ${n}`;
+    }
+
+    function term(coef, variable) {
+      if (coef === 1 && variable) return variable;
+      if (coef === -1 && variable) return `−${variable}`;
+      if (coef < 0) return `−${Math.abs(coef)}${variable}`;
+      return `${coef}${variable}`;
+    }
+
+    function joinTerms(items) {
+      return items.map((item, index) => {
+        const coef = item.coef;
+        const variable = item.variable || "";
+        const core = Math.abs(coef) === 1 && variable ? variable : `${Math.abs(coef)}${variable}`;
+        if (index === 0) return coef < 0 ? `−${core}` : core;
+        return coef < 0 ? ` − ${core}` : ` + ${core}`;
+      }).join("");
+    }
+
+    function simplifyLikeTerms(items) {
+      const map = {};
+      items.forEach(item => {
+        const variable = item.variable || "";
+        map[variable] = (map[variable] || 0) + item.coef;
+      });
+
+      const order = Object.keys(map).filter(key => map[key] !== 0);
+      if (order.length === 0) return "0";
+
+      return order.map((variable, index) => {
+        const coef = map[variable];
+        const core = Math.abs(coef) === 1 && variable ? variable : `${Math.abs(coef)}${variable}`;
+        if (index === 0) return coef < 0 ? `−${core}` : core;
+        return coef < 0 ? ` − ${core}` : ` + ${core}`;
+      }).join("");
+    }
+
+    function renderCard(q, number) {
+      return `
+        <div class="card">
+          <div class="q-number">Question ${number}</div>
+          <div class="q-type">${q.type}</div>
+          <div class="q-text">${q.question}</div>
+          <details class="answer-details">
+            <summary aria-label="Show or hide answer"></summary>
+            <div class="answer">${q.answer}</div>
+          </details>
+        </div>
+      `;
+    }
+
+    function renderSection(title, description, questions, startNumber) {
+      let html = `
+        <section class="section">
+          <div class="section-title">
+            <h2>${title}</h2>
+            <p>${description}</p>
+          </div>
+          <div class="question-grid">
+      `;
+
+      questions.forEach((q, i) => {
+        html += renderCard(q, startNumber + i);
+      });
+
+      html += `
+          </div>
+        </section>
+      `;
+
+      return html;
+    }
+
+    function generateSectionA() {
+      const xCoef1 = randomInt(2, 9);
+      const yCoef = randomInt(2, 9);
+      const constant = randomInt(3, 15);
+      const xCoef2 = randomInt(2, 9);
+      const pronumerals = ["x", "y", "a", "b", "p", "k", "m", "n"];
+      const v1 = randomChoice(pronumerals);
+      const v2 = randomChoice(pronumerals.filter(v => v !== v1));
+      const v3 = randomChoice(pronumerals);
+      const v4 = randomChoice(pronumerals);
+      const productCoef = randomInt(2, 9);
+      const halfVar = randomChoice(pronumerals);
+
+      return [
+        {
+          type: "Language of Algebra",
+          question: `Identify the parts of the expression:\n${xCoef1}x + ${yCoef}y − ${constant} + ${xCoef2}x\n\na) List the terms.\nb) State the coefficient of x.\nc) State the coefficient of y.\nd) State the constant term.`,
+          answer: `a) ${xCoef1}x, ${yCoef}y, −${constant}, ${xCoef2}x\nb) ${xCoef1} and ${xCoef2} are the coefficients of the x-terms.\nc) ${yCoef}\nd) −${constant}`
+        },
+        {
+          type: "Writing Expressions",
+          question: `Write an algebraic expression for each phrase:\na) The sum of ${v1} and ${constant}\nb) ${xCoef1} less than ${v2}\nc) The product of ${productCoef} and ${v3}\nd) Half of ${halfVar} plus ${xCoef2}`,
+          answer: `a) ${v1} + ${constant}\nb) ${v2} − ${xCoef1}\nc) ${productCoef}${v3}\nd) ${halfVar}/2 + ${xCoef2}`
+        }
+      ];
+    }
+
+    function generateSectionB() {
+      const x = randomInt(2, 6);
+      const y = randomInt(3, 9);
+      const a = randomInt(2, 5);
+      const b = -randomInt(2, 6);
+
+      return [
+        {
+          type: "Substitution",
+          question: `Evaluate when x = ${x} and y = ${y}:\na) 4y\nb) 2x + y\nc) x² + 2y − x\nd) 3x + 4y`,
+          answer: `a) ${4 * y}\nb) ${2 * x + y}\nc) ${x * x + 2 * y - x}\nd) ${3 * x + 4 * y}`
+        },
+        {
+          type: "Substitution",
+          question: `Substitute and evaluate when a = ${a}, b = ${b}:\na) 5a + 2b\nb) ab + 4\nc) 2(a + b)\nd) 10 − 3a − b`,
+          answer: `a) ${5 * a + 2 * b}\nb) ${a * b + 4}\nc) ${2 * (a + b)}\nd) ${10 - 3 * a - b}`
+        }
+      ];
+    }
+
+    function generateSectionC() {
+      const x1 = randomInt(2, 9), x2 = randomInt(2, 9);
+      const a1 = randomInt(5, 12), a2 = randomInt(1, 5);
+      const c1 = randomInt(2, 9), c2 = randomInt(2, 9), c3 = randomInt(2, 9), c4 = randomInt(2, 9);
+      const ab1 = randomInt(4, 12), ab2 = randomInt(1, 5), b1 = randomInt(2, 8);
+      const m1 = randomInt(5, 12), m2 = randomInt(2, 9), con1 = randomInt(2, 9);
+      const p1 = randomInt(4, 10), p2 = randomInt(1, 6), q1 = randomInt(2, 8), q2 = randomInt(2, 8);
+      const sx1 = randomInt(4, 12), sx2 = randomInt(1, 5), sc1 = randomInt(2, 9), sc2 = randomInt(2, 9);
+      const xy1 = randomInt(6, 14), xy2 = randomInt(1, 5), xy3 = randomInt(2, 8);
+
+      return [
+        {
+          type: "Combine Like Terms",
+          question: `Simplify:\na) ${x1}x + ${x2}x\nb) ${a1}a − ${a2}a\nc) ${c1}x + ${c2}y + ${c3}x + ${c4}y\nd) ${ab1}ab − ${ab2}ab + ${b1}b`,
+          answer: `a) ${x1 + x2}x\nb) ${a1 - a2}a\nc) ${c1 + c3}x + ${c2 + c4}y\nd) ${ab1 - ab2}ab + ${b1}b`
+        },
+        {
+          type: "Simplify Fully",
+          question: `Simplify fully:\na) ${m1}x + ${m2}x + ${con1}\nb) ${p1}a + ${q1}b + ${p2}a + ${q2}b\nc) ${sx1}x + ${sc1} − ${sx2}x + ${sc2}\nd) ${xy1}xy − ${xy2}yx + ${xy3}xy`,
+          answer: `a) ${m1 + m2}x + ${con1}\nb) ${p1 + p2}a + ${q1 + q2}b\nc) ${sx1 - sx2}x + ${sc1 + sc2}\nd) ${xy1 - xy2 + xy3}xy`
+        }
+      ];
+    }
+
+    function generateSectionD() {
+      const e1 = randomInt(2, 6), c1 = randomInt(2, 9);
+      const e2 = randomInt(2, 7), c2 = randomInt(2, 8);
+      const e3 = randomInt(2, 6);
+      const e4 = randomInt(2, 6), innerX = randomInt(2, 5), innerC = randomInt(2, 8);
+
+      const f1 = randomInt(2, 9), f2 = f1 * randomInt(2, 6);
+      const f3 = randomInt(2, 9), f4 = f3 * randomInt(2, 6);
+      const f5 = randomInt(2, 9), f6 = f5 * randomInt(2, 6);
+      const f7 = randomInt(2, 9), f8 = f7 * randomInt(2, 6);
+
+      const s1 = randomInt(2, 6), s2 = randomInt(2, 8);
+      const s3 = randomInt(2, 6), s4 = randomInt(2, 8);
+
+      return [
+        {
+          type: "Expand",
+          question: `Expand:\na) ${e1}(x + ${c1})\nb) ${e2}(a − ${c2})\nc) ${e3}(x + y)\nd) ${e4}(${innerX}x + ${innerC})`,
+          answer: `a) ${e1}x + ${e1 * c1}\nb) ${e2}a − ${e2 * c2}\nc) ${e3}x + ${e3}y\nd) ${e4 * innerX}x + ${e4 * innerC}`
+        },
+        {
+          type: "Factorise",
+          question: `Factorise:\na) ${f1}x + ${f2}\nb) ${f3}a − ${f4}\nc) ${f5 * 2}x + ${f6}\nd) ${f7}y − ${f8}`,
+          answer: `a) ${f1}(x + ${f2 / f1})\nb) ${f3}(a − ${f4 / f3})\nc) ${f5 * 2}(x + ${f6 / (f5 * 2)})\nd) ${f7}(y − ${f8 / f7})`
+        },
+        {
+          type: "Expand and Simplify",
+          question: `Expand and simplify:\n${s1}(x + ${s2}) + ${s3}(x + ${s4})`,
+          answer: `${s1 + s3}x + ${s1 * s2 + s3 * s4}`
+        }
+      ];
+    }
+
+    function generateSectionE() {
+      const x = randomInt(2, 6);
+      const plumberFee = randomChoice([70, 80, 90, 100]);
+      const hourly = randomChoice([40, 50, 60, 75]);
+      const h = randomInt(2, 5);
+
+      return [
+        {
+          type: "Reasoning",
+          question: `Are these expressions equivalent? Explain briefly.\na) x + ${x} and ${x} + x\nb) ${x}x + 2 and 2x + ${x}`,
+          answer: `a) Yes. Addition is commutative, so x + ${x} = ${x} + x.\nb) No. For example, if x = 2, then ${x}x + 2 = ${x * 2 + 2}, but 2x + ${x} = ${2 * 2 + x}.`
+        },
+        {
+          type: "True or False",
+          question: `True or False? Justify with a value.\na) 4x + 2x = 6x\nb) 3x + 2y = 5xy`,
+          answer: `a) True. For example, if x = 2, then 4x + 2x = 8 + 4 = 12 and 6x = 12.\nb) False. For example, if x = 2 and y = 3, then 3x + 2y = 6 + 6 = 12, but 5xy = 30.`
+        },
+        {
+          type: "Problem Solving",
+          question: `A plumber charges a $${plumberFee} call-out fee plus $${hourly} per hour.\na) Write an expression for the total cost for h hours.\nb) Find the cost if h = ${h}.`,
+          answer: `a) ${plumberFee} + ${hourly}h\nb) ${plumberFee} + ${hourly} × ${h} = $${plumberFee + hourly * h}`
+        }
+      ];
+    }
+
+    function generateNewPracticeSet() {
+      const content = document.getElementById("content");
+      let number = 1;
+      let html = "";
+
+      const sectionA = generateSectionA();
+      html += renderSection("Section A: Language of Algebra", "Identify parts of expressions and write algebraic expressions from words.", sectionA, number);
+      number += sectionA.length;
+
+      const sectionB = generateSectionB();
+      html += renderSection("Section B: Substitution", "Substitute given values into algebraic expressions and evaluate.", sectionB, number);
+      number += sectionB.length;
+
+      const sectionC = generateSectionC();
+      html += renderSection("Section C: Simplifying Expressions", "Combine like terms and simplify expressions fully.", sectionC, number);
+      number += sectionC.length;
+
+      const sectionD = generateSectionD();
+      html += renderSection("Section D: Expanding and Factorising", "Expand brackets, factorise expressions and simplify expanded expressions.", sectionD, number);
+      number += sectionD.length;
+
+      const sectionE = generateSectionE();
+      html += renderSection("Section E: Reasoning", "Explain equivalence, justify true or false statements and solve algebra problems.", sectionE, number);
+
+      content.innerHTML = html;
+      hideAllAnswers();
+      try { window.scrollTo(0, 0); } catch (e) {}
+    }
+
+    function toggleAnswer(button) {
+      const details = button.closest(".card").querySelector(".answer-details");
+      if (details) details.open = !details.open;
+    }
+
+    function showAllAnswers() {
+      document.querySelectorAll(".answer-details").forEach(el => el.open = true);
+    }
+
+    function hideAllAnswers() {
+      document.querySelectorAll(".answer-details").forEach(el => el.open = false);
+    }
+
+    function attachButtonListeners() {
+      const generateBtn = document.getElementById("generateBtn");
+      const showAllBtn = document.getElementById("showAllBtn");
+      const hideAllBtn = document.getElementById("hideAllBtn");
+
+      if (generateBtn) {
+        generateBtn.addEventListener("click", function(event) {
+          event.preventDefault();
+          generateNewPracticeSet();
+        });
+        generateBtn.addEventListener("touchend", function(event) {
+          event.preventDefault();
+          generateNewPracticeSet();
+        }, { passive: false });
+      }
+
+      if (showAllBtn) {
+        showAllBtn.addEventListener("click", function(event) {
+          event.preventDefault();
+          showAllAnswers();
+        });
+        showAllBtn.addEventListener("touchend", function(event) {
+          event.preventDefault();
+          showAllAnswers();
+        }, { passive: false });
+      }
+
+      if (hideAllBtn) {
+        hideAllBtn.addEventListener("click", function(event) {
+          event.preventDefault();
+          hideAllAnswers();
+        });
+        hideAllBtn.addEventListener("touchend", function(event) {
+          event.preventDefault();
+          hideAllAnswers();
+        }, { passive: false });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      attachButtonListeners();
+      generateNewPracticeSet();
+    });
+  </script>
+</body>
+</html>
